@@ -15,6 +15,15 @@ $build_dir = "$base_dir\build"
 $test_dir = "$build_dir\test"
     
 
+$aliaSql = "$source_dir\Database\scripts\AliaSql.exe"
+$databaseAction = $env:DatabaseAction
+if ([string]::IsNullOrEmpty($databaseAction)) { $databaseAction = "Rebuild"}
+$databaseName = $env:DatabaseName
+if ([string]::IsNullOrEmpty($databaseName)) { $databaseName = $projectName}
+$script:databaseServer = $env:DatabaseServer
+if ([string]::IsNullOrEmpty($script:databaseServer)) { $script:databaseServer = "(LocalDb)\MSSQLLocalDB"}
+$databaseScripts = "$source_dir\Database\scripts"
+
 if ([string]::IsNullOrEmpty($version)) { $version = "1.0.0.0"}
 if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
  
@@ -97,21 +106,24 @@ Function AcceptanceTest{
 	}
 }
 
+Function MigrateDatabaseLocal {
+	exec{
+		& $aliaSql $databaseAction $script:databaseServer $databaseName $databaseScripts
+	}
+}
+
 Function PrivateBuild{
 	$projectConfig = "Debug"
 	$sw = [Diagnostics.Stopwatch]::StartNew()
 	Init
 	Compile
 	UnitTests
+	MigrateDatabaseLocal
+	IntegrationTest
 	$sw.Stop()
 	write-host "Build time: " $sw.Elapsed.ToString()
 }
 
 Function CIBuild{
-	$sw = [Diagnostics.Stopwatch]::StartNew()
-	Init
-	Compile
-	UnitTests
-	$sw.Stop()
-	write-host "Build time: " $sw.Elapsed.ToString()
+	PrivateBuild
 }
