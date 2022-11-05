@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Mappings
+namespace CodingWithPalermo.ChurchBulletin.DataAccess.Mappings
 {
     // Interface that enforces a Map method is implemented
     public interface IEntityFrameworkMapping

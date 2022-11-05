@@ -1,7 +1,7 @@
 ﻿
 namespace CodingWithPalermo.ChurchBulletin.Core.Model
 {
-    public class ChurchBulletin : EntityBase<ChurchBulletin>
+    public class ChurchBulletinItem : EntityBase<ChurchBulletinItem>
     {
         public override Guid Id { get; set; }
         public string? Name { get; set; }

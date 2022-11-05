@@ -1,8 +1,8 @@
 using CodingWithPalermo.ChurchBulletin.Core.Model;
-using DataAccess.Mappings;
+using CodingWithPalermo.ChurchBulletin.DataAccess.Mappings;
 using Shouldly;
 
-namespace IntegrationTests
+namespace CodingWithPalermo.ChurchBulletin.IntegrationTests
 {
     public class ChurchBulletinMappingTester
     {
@@ -14,7 +14,7 @@ namespace IntegrationTests
         [Test]
         public void ShouldMapChurchBulletin()
         {
-            var bulletin = new ChurchBulletin();
+            var bulletin = new ChurchBulletinItem();
             bulletin.Name = "Worship service";
             bulletin.Place = "Sanctuary";
             bulletin.Date = new DateTime(2022, 1, 1);
@@ -25,10 +25,10 @@ namespace IntegrationTests
                 context.SaveChanges();
             }
 
-            ChurchBulletin? actual;
+            ChurchBulletinItem? actual;
             using (var context = new DataContext(new TestDataConfiguration()))
             {
-                actual = context.Set<ChurchBulletin>()
+                actual = context.Set<ChurchBulletinItem>()
                     .SingleOrDefault(b => b == bulletin);
             }
 

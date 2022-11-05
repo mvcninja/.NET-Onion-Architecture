@@ -1,7 +1,6 @@
-﻿using DataAccess;
-using Microsoft.Extensions.Configuration;
+﻿using CodingWithPalermo.ChurchBulletin.DataAccess;
 
-namespace IntegrationTests
+namespace CodingWithPalermo.ChurchBulletin.IntegrationTests
 {
     public class TestDataConfiguration : IDataConfiguration
     {

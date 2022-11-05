@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Mappings
+namespace CodingWithPalermo.ChurchBulletin.DataAccess.Mappings
 {
     public class DataContext : DbContext
     {
@@ -22,7 +22,7 @@ namespace DataAccess.Mappings
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            new ChurchBulletinMap().Map(modelBuilder);
+            new ChurchBulletinItemMap().Map(modelBuilder);
         }
 
         public override string ToString()

@@ -1,4 +1,4 @@
-using CodingWithPalermo.ChurchBulletin.Core;
+using CodingWithPalermo.ChurchBulletin.Core.Model;
 using Shouldly;
 
 namespace CodingWithPalermo.ChurchBulletin.UnitTests
@@ -13,7 +13,7 @@ namespace CodingWithPalermo.ChurchBulletin.UnitTests
         [Test]
         public void Test1()
         {
-            var class1 = new Class1();
+            var class1 = new ChurchBulletinItem();
             class1.ShouldNotBeNull();
         }
     }
