@@ -64,3 +64,4 @@ _ReSharper*/
 !?*.[Cc]ache/
 
 /build/test
+/src/.cr/personal
